@@ -93,7 +93,7 @@ Pod::Spec.new do |s|
 
   # s.public_header_files = "Classes/**/*.h"
 
-  s.vendored_frameworks = "frameworks/RtsSDK.framework"
+  s.vendored_frameworks = "RtsSDK.framework"
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
