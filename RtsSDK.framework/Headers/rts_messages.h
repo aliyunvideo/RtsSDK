@@ -47,12 +47,39 @@ extern "C" {
  */
 #define E_PROFILING_REPORT  105
 
+/* got the aes keyinfo in stream, send to app to
+ * fetch the plaintext key
+ */
+#define E_GOT_AESKEYINFO    106
+
+#define E_OPEN              120 // event at opening
+#define E_CLOSE             121 // event at closing
+#define E_CONNECT           122 // event at connecting
+#define E_PUBLISH           124 // event at publishing
+#define E_SUBSCRIBE         125 // event at subscribing
+
+
+#define E_FIRST_PACKET      132 // first rtp packet
+#define E_FIRST_VFRMAE      135 // first video frame
+#define E_FIRST_AFRAME      136 // first audio frame
+
+/* some messages used internally. app
+ * will not receive them
+ */
+// code 141 reserved for upstream period report to sls
+#define E_REPORT_UPSTREAM_SLS   141 // slight difference from E_PROFILING_REPORT
+// code 141 reserved for upstream period report to sls
+#define E_REPORT_DOWNSTREAM_SLS 142 // slight difference from E_PROFILING_REPORT
+// code 150 reserved for various error code to report to sls
+#define E_ERROR_REPORT_SLS  150
+
+
 
 #define EVENT_ERROR_BASE 20000
 // errors happening during opening stage
 #define E_DNS_FAIL          (EVENT_ERROR_BASE + 1 )  // could not resolve host name
 #define E_AUTH_FAIL         (EVENT_ERROR_BASE + 2 )  // bad auth code
-#define E_CONN_OK           (EVENT_ERROR_BASE + 9 )  // fail to connect to sfu
+#define E_CONN_OK           (EVENT_ERROR_BASE + 9 )  // connected to sfu
 #define E_CONN_FAIL         (EVENT_ERROR_BASE + 10)  // fail to connect to sfu
 #define E_SUB_TIMEOUT       (EVENT_ERROR_BASE + 12)  // timeout for subscribe response
 #define E_SUB_NO_STREAM     (EVENT_ERROR_BASE + 13)  // stream not exist
@@ -69,6 +96,7 @@ extern "C" {
 #define E_CONNECT_LOST      (EVENT_ERROR_BASE + 55)  // require reconnection
 #define E_STREAM_RESTARTED  (EVENT_ERROR_BASE + 56)  // stream restart detected
 #define E_DOWNGRADE_RTMP    (EVENT_ERROR_BASE + 57)  // need downgrade to rtmp
+#define E_DECRYPT_STREAM    (EVENT_ERROR_BASE + 58)  // need check decrypt config
 
 #if defined(__cplusplus)
 }
