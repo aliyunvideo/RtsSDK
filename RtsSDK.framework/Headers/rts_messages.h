@@ -46,6 +46,7 @@ extern "C" {
  * data format: key1:value1,key2:value2,key3:value3...
  */
 #define E_PROFILING_REPORT  105
+// 107: reserved by E_PROFILING_REPORT_H5
 
 /* got the aes keyinfo in stream, send to app to
  * fetch the plaintext key
@@ -62,6 +63,7 @@ extern "C" {
 #define E_FIRST_PACKET      132 // first rtp packet
 #define E_FIRST_VFRMAE      135 // first video frame
 #define E_FIRST_AFRAME      136 // first audio frame
+// 137: reserved by E_FIRST_VFRAME_H5
 
 /* some messages used internally. app
  * will not receive them
