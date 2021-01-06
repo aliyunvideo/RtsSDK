@@ -58,11 +58,13 @@ extern "C" {
 #define E_CONNECT           122 // event at connecting
 #define E_PUBLISH           124 // event at publishing
 #define E_SUBSCRIBE         125 // event at subscribing
+#define E_SUBSCRIBE_OK      126 // event at subscribing
 
 
 #define E_FIRST_PACKET      132 // first rtp packet
 #define E_FIRST_VFRMAE      135 // first video frame
 #define E_FIRST_AFRAME      136 // first audio frame
+
 // 137: reserved by E_FIRST_VFRAME_H5
 
 /* some messages used internally. app
@@ -75,6 +77,8 @@ extern "C" {
 // code 150 reserved for various error code to report to sls
 #define E_ERROR_REPORT_SLS  150
 
+#define E_VIDEO_FREEZE_FINISH    151        //Statistics of the last video freeze
+#define E_AUDIO_FREEZE_FINISH    152        //Statistics of the last audio freeze
 
 
 #define EVENT_ERROR_BASE 20000
@@ -99,6 +103,12 @@ extern "C" {
 #define E_STREAM_RESTARTED  (EVENT_ERROR_BASE + 56)  // stream restart detected
 #define E_DOWNGRADE_RTMP    (EVENT_ERROR_BASE + 57)  // need downgrade to rtmp
 #define E_DECRYPT_STREAM    (EVENT_ERROR_BASE + 58)  // need check decrypt config
+#define E_IPPORT_SWITCHED   (EVENT_ERROR_BASE + 59)  // wan ip port switched
+
+
+//For internal use only
+#define EVENT_INTERNAL_BASE 30000
+#define E_CONNECT_TOKEN  (EVENT_INTERNAL_BASE + 1)
 
 #if defined(__cplusplus)
 }

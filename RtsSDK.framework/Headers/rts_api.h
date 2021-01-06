@@ -64,6 +64,27 @@ struct rts_worker_demux_info
 
     // video part
     int video_flag; // 1 - following video info is valid; 0 - invalid
+    int video_codec;      // 1 - h264  2 - hevc
+    int video_width;
+    int video_height;
+    int video_profile;
+    int video_level;
+
+    unsigned char spspps[10 * 1024]; // large enough
+    int spspps_len; // actual bytes used in spspps
+};
+
+struct rts_worker_demux_info2
+{
+    unsigned int uid; // 0: unspecified
+
+    // audio part
+    int audio_flag; // 1 - following audio info is valid; 0 - invalid
+    int audio_channels; // 1
+    int audio_sample_rate; // 48000
+
+    // video part
+    int video_flag; // 1 - following video info is valid; 0 - invalid
     int video_codec;      // 1 - h264
     int video_width;
     int video_height;
@@ -94,6 +115,8 @@ struct rts_frame {
     int flag;               // for video frame (is_audio == 0)
                             //     bit 0: key frame;
                             //     bit 1: corruption
+                            //     bit 2: sps
+                            //     bit 3: sps change
     int duration;           // in ms
 
     // use this function to free rts_frame object
@@ -149,6 +172,20 @@ struct rts_glue_funcs {
  * @return Structure containing function pointers
  * @note Caller need check return value NULL or not
  */
+#if defined(WIN32)
+  #if defined(BUILDDLL)
+    #define DLL_PUBLIC __declspec(dllexport)
+  #else
+    #define DLL_PUBLIC __declspec(dllimport)
+  #endif
+#else
+  #if defined(BUILDDLL)
+    #define DLL_PUBLIC __attribute__ ((visibility("default")))
+  #else
+    #define DLL_PUBLIC
+  #endif
+#endif
+DLL_PUBLIC
 const struct rts_glue_funcs *get_rts_funcs(int version);
 
 #if defined(__cplusplus)
