@@ -90,6 +90,10 @@ extern "C" {
 #define E_PLI_REQUEST  (EVENT_RTCP_BASE + 1)
 #define E_FIR_REQUEST  (EVENT_RTCP_BASE + 2)
 
+//code 220~250 reserved for congestion control
+#define EVENT_CONGESTIONCONTROL_BASE 220
+#define E_STABLE_BITRATE (EVENT_CONGESTIONCONTROL_BASE + 1)
+
 #define EVENT_ERROR_BASE 20000
 // errors happening during opening stage
 #define E_DNS_FAIL          (EVENT_ERROR_BASE + 1 )  // could not resolve host name
