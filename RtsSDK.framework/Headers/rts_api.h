@@ -7,6 +7,7 @@
 #define __ALI_RTS_API_H__
 
 #include "rts_messages.h"
+#include "ali_net_api.h"
 
 #ifndef ARTC_STATE_DEFINE
 #define ARTC_STATE_DEFINE
@@ -52,78 +53,6 @@
 #if defined(__cplusplus)
 extern "C" {
 #endif
-
-// structure to store subscribed stream info
-// use ioctl(..., "get_stream_info", ...) to fetch
-struct rts_worker_demux_info
-{
-    // audio part
-    int audio_flag; // 1 - following audio info is valid; 0 - invalid
-    int audio_channels; // 1
-    int audio_sample_rate; // 48000
-
-    // video part
-    int video_flag; // 1 - following video info is valid; 0 - invalid
-    int video_codec;      // 1 - h264  2 - hevc
-    int video_width;
-    int video_height;
-    int video_profile;
-    int video_level;
-
-    unsigned char spspps[10 * 1024]; // large enough
-    int spspps_len; // actual bytes used in spspps
-};
-
-struct rts_worker_demux_info2
-{
-    unsigned int uid; // 0: unspecified
-
-    // audio part
-    int audio_flag; // 1 - following audio info is valid; 0 - invalid
-    int audio_channels; // 1
-    int audio_sample_rate; // 48000
-
-    // video part
-    int video_flag; // 1 - following video info is valid; 0 - invalid
-    int video_codec;      // 1 - h264
-    int video_width;
-    int video_height;
-    int video_profile;
-    int video_level;
-
-    unsigned char spspps[10 * 1024]; // large enough
-    int spspps_len; // actual bytes used in spspps
-};
-
-// structure to store subscribed stream info
-// use ioctl(..., "get_pub_info", ...) to fetch
-// not implemented yet
-struct rts_worker_mux_info {
-    // audio part
-    int audio_flag; // 1 - following audio info is valid; 0 - invalid
-
-    // video part
-    int video_flag; // 1 - following video info is valid; 0 - invalid
-};
-
-struct rts_frame {
-    void *buf;              // where frame data is stored
-    int size;               // size of frame data in bytes
-    int is_audio;           // 1 for audio frame, 0 for video frame
-    unsigned long long pts; // presentation time stamp, in ms
-    unsigned long long dts; // decoding time stamp, in ms
-    int flag;               // for video frame (is_audio == 0)
-                            //     bit 0: key frame;
-                            //     bit 1: corruption
-                            //     bit 2: sps
-                            //     bit 3: sps change
-    int duration;           // in ms
-
-    // use this function to free rts_frame object
-    void (*free_ptr)(struct rts_frame *);
-
-    unsigned int uid; // reserved. which user this stream attached
-};
 
 // file operation style functions
 struct rts_glue_funcs {

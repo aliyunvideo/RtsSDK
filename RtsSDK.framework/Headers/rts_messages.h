@@ -69,7 +69,7 @@ extern "C" {
 #define E_FIRST_AFRAME      136 // first audio frame, only sub
 
 #define E_FIRST_PUB_VFRAME  137 //first pub video frame, only pub
-#define E_FIRST_PUB_AFRAME  138 //first pub video frame, only pub
+#define E_FIRST_PUB_AFRAME  138 //first pub audio frame, only pub
 // 137: reserved by E_FIRST_VFRAME_H5
 
 /* some messages used internally. app
@@ -84,7 +84,8 @@ extern "C" {
 
 #define E_VIDEO_FREEZE_FINISH    151        //Statistics of the last video freeze
 #define E_AUDIO_FREEZE_FINISH    152        //Statistics of the last audio freeze
-
+#define E_PUB_DELAY_REPORT       153        //Statistics of pub delay
+#define E_SUB_DELAY_REPORT       154        //Statistics of sub delay
 //code 200~210 reserved for rtcp report event use
 #define EVENT_RTCP_BASE 200
 #define E_PLI_REQUEST  (EVENT_RTCP_BASE + 1)
@@ -115,7 +116,7 @@ extern "C" {
 #define E_CONGESTION_END    (EVENT_ERROR_BASE + 51)  // lost rate decrease to normal level
 #define E_STREAM_BROKEN     (EVENT_ERROR_BASE + 52)  // no any audio and video packets
 #define E_STREAM_RECOVERED  (EVENT_ERROR_BASE + 53)  // audio or video packets recovered
-#define E_STREAM_EOF        (EVENT_ERROR_BASE + 54)  // EOF received from sfu. App need stop playback
+#define E_STREAM_EOF        (EVENT_ERROR_BASE + 54)  // EOF received from sfu. App need stop playback or pushstream
 
 #define E_CONNECT_LOST      (EVENT_ERROR_BASE + 55)  // require reconnection. sub & pub
 #define E_STREAM_RESTARTED  (EVENT_ERROR_BASE + 56)  // stream restart detected
