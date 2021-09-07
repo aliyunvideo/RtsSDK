@@ -53,7 +53,6 @@
 #if defined(__cplusplus)
 extern "C" {
 #endif
-
 // file operation style functions
 struct rts_glue_funcs {
     int api_version; // validation. must be 2

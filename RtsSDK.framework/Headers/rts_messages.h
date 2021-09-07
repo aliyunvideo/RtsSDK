@@ -58,6 +58,7 @@ extern "C" {
 #define E_OPEN              120 // event at opening
 #define E_CLOSE             121 // event at closing
 #define E_CONNECT           122 // event at connecting
+#define E_DISCONNECT        123 // event at disconnecting
 #define E_PUBLISH           124 // event at publishing
 #define E_SUBSCRIBE         125 // event at subscribing
 #define E_SUBSCRIBE_OK      126 // event at subscribing
