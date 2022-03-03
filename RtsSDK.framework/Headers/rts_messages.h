@@ -63,6 +63,7 @@ extern "C" {
 #define E_SUBSCRIBE         125 // event at subscribing
 #define E_SUBSCRIBE_OK      126 // event at subscribing
 #define E_PUBLISH_OK        127 // event at publishing
+#define E_GETSTREAMINFO_OK  128 // event at |get_stream_info| return success
 
 
 #define E_FIRST_PACKET      132 // first rtp packet, only sub
@@ -87,6 +88,13 @@ extern "C" {
 #define E_AUDIO_FREEZE_FINISH    152        //Statistics of the last audio freeze
 #define E_PUB_DELAY_REPORT       153        //Statistics of pub delay
 #define E_SUB_DELAY_REPORT       154        //Statistics of sub delay
+
+// code 160 reserved for start up
+#define E_REPORT_START_UP_AUDIO  160
+#define E_REPORT_START_UP_VIDEO  161
+#define E_REPORT_START_UP_DNS_CACHE  162
+#define E_REPORT_START_UP_COOKIE  163
+
 //code 200~210 reserved for rtcp report event use
 #define EVENT_RTCP_BASE 200
 #define E_PLI_REQUEST  (EVENT_RTCP_BASE + 1)
@@ -98,19 +106,26 @@ extern "C" {
 
 #define EVENT_ERROR_BASE 20000
 // errors happening during opening stage
-#define E_DNS_FAIL          (EVENT_ERROR_BASE + 1 )  // could not resolve host name
-#define E_AUTH_FAIL         (EVENT_ERROR_BASE + 2 )  // bad auth code
-#define E_CONN_OK           (EVENT_ERROR_BASE + 9 )  // connected to sfu
-#define E_CONN_FAIL         (EVENT_ERROR_BASE + 10)  // fail to connect to sfu ,sub & pub
-#define E_SUB_TIMEOUT       (EVENT_ERROR_BASE + 12)  // timeout for subscribe response
-#define E_SUB_NO_STREAM     (EVENT_ERROR_BASE + 13)  // sub stream not exist
-#define E_SUB_NO_AUDIO      (EVENT_ERROR_BASE + 14)  // sub audio track not found
-#define E_SUB_NO_VIDEO      (EVENT_ERROR_BASE + 15)  // sub video track not found
-#define E_SUB_UNKNOWN_ERROR (EVENT_ERROR_BASE + 20)  // sub other unknown error
+#define E_DNS_FAIL              (EVENT_ERROR_BASE + 1 )  // could not resolve host name
+#define E_AUTH_FAIL             (EVENT_ERROR_BASE + 2 )  // bad auth code
+#define E_SUB_PROTO_ERROR       (EVENT_ERROR_BASE + 3 )  // proto header is not artc
+#define E_PUB_PROTO_ERROR       (EVENT_ERROR_BASE + 4 )  // proto header is not artc
+#define E_OUT_OF_MEMORY         (EVENT_ERROR_BASE + 5 )  // out of memory
+#define E_CONN_OK               (EVENT_ERROR_BASE + 9 )  // connected to sfu. Normal event should NOT be here!!!
+#define E_CONN_FAIL             (EVENT_ERROR_BASE + 10)  // fail to connect to sfu ,sub & pub
+#define E_CONN_TIMEOUT          (EVENT_ERROR_BASE + 11)  // connect request timeout, either temp response or final response
+#define E_SUB_TIMEOUT           (EVENT_ERROR_BASE + 12)  // timeout for subscribe response
+#define E_SUB_NO_STREAM         (EVENT_ERROR_BASE + 13)  // sub stream not exist
+#define E_SUB_NO_AUDIO          (EVENT_ERROR_BASE + 14)  // sub audio track not found
+#define E_SUB_NO_VIDEO          (EVENT_ERROR_BASE + 15)  // sub video track not found
+#define E_SUB_APACKET_TIMEOUT   (EVENT_ERROR_BASE + 16)  // first audio packet timeout after received sub final response successfully
+#define E_SUB_VPACKET_TIMEOUT   (EVENT_ERROR_BASE + 17)  // first video packet timeout after received sub final response successfully
+#define E_SUB_UNKNOWN_ERROR     (EVENT_ERROR_BASE + 20)  // sub other unknown error
 
 #define E_PUB_TIMEOUT       (EVENT_ERROR_BASE + 30)  // timeout for pub response
 #define E_PUB_NO_STREAM     (EVENT_ERROR_BASE + 31)  // pub stream not exist
 #define E_PUB_UNKNOWN_ERROR (EVENT_ERROR_BASE + 32)  // pub other unknown error
+
 
 // errors happening during running stage
 #define E_CONGESTION_BEGIN  (EVENT_ERROR_BASE + 50)  // lost rate too high
@@ -124,6 +139,7 @@ extern "C" {
 #define E_DOWNGRADE_RTMP    (EVENT_ERROR_BASE + 57)  // need downgrade to rtmp  sub & pub
 #define E_DECRYPT_STREAM    (EVENT_ERROR_BASE + 58)  // need check decrypt config
 #define E_IPPORT_SWITCHED   (EVENT_ERROR_BASE + 59)  // wan ip port switched
+
 
 
 //For internal use only
