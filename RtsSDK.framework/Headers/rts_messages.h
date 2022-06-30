@@ -64,6 +64,8 @@ extern "C" {
 #define E_SUBSCRIBE_OK      126 // event at subscribing
 #define E_PUBLISH_OK        127 // event at publishing
 #define E_GETSTREAMINFO_OK  128 // event at |get_stream_info| return success
+#define E_SUB_PLAY_CONFIG   129
+#define E_DNS_RESULT        130 // DNS result
 
 
 #define E_FIRST_PACKET      132 // first rtp packet, only sub
@@ -139,7 +141,7 @@ extern "C" {
 #define E_DOWNGRADE_RTMP    (EVENT_ERROR_BASE + 57)  // need downgrade to rtmp  sub & pub
 #define E_DECRYPT_STREAM    (EVENT_ERROR_BASE + 58)  // need check decrypt config
 #define E_IPPORT_SWITCHED   (EVENT_ERROR_BASE + 59)  // wan ip port switched
-
+#define E_CLIENT_CRASH      (EVENT_ERROR_BASE + 60)  // the client software crashed
 
 
 //For internal use only
