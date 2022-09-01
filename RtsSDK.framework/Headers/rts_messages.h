@@ -26,11 +26,6 @@ extern "C" {
  *       105           state report event (called periodically)
  *                     'data' points to a rtssdk_profiling_data object
  *       200~210       rtcp report event
- *       1100          opening an url
- *       1101          received first audio packet
- *       1102          received first video packet
- *       1103          output first video frame
- *       1104          output first audio frame
  *       20000~30000   error event
  *
  */
@@ -90,6 +85,7 @@ extern "C" {
 #define E_AUDIO_FREEZE_FINISH    152        //Statistics of the last audio freeze
 #define E_PUB_DELAY_REPORT       153        //Statistics of pub delay
 #define E_SUB_DELAY_REPORT       154        //Statistics of sub delay
+#define E_SUB_FAIL_REPORT       155        //Statistics of sub fail
 
 // code 160 reserved for start up
 #define E_REPORT_START_UP_AUDIO  160
@@ -106,47 +102,18 @@ extern "C" {
 #define EVENT_CONGESTIONCONTROL_BASE 220
 #define E_STABLE_BITRATE (EVENT_CONGESTIONCONTROL_BASE + 1)
 
+
 #define EVENT_ERROR_BASE 20000
-// errors happening during opening stage
-#define E_DNS_FAIL              (EVENT_ERROR_BASE + 1 )  // could not resolve host name
-#define E_AUTH_FAIL             (EVENT_ERROR_BASE + 2 )  // bad auth code
-#define E_SUB_PROTO_ERROR       (EVENT_ERROR_BASE + 3 )  // proto header is not artc
-#define E_PUB_PROTO_ERROR       (EVENT_ERROR_BASE + 4 )  // proto header is not artc
-#define E_OUT_OF_MEMORY         (EVENT_ERROR_BASE + 5 )  // out of memory
-#define E_CONN_OK               (EVENT_ERROR_BASE + 9 )  // connected to sfu. Normal event should NOT be here!!!
-#define E_CONN_FAIL             (EVENT_ERROR_BASE + 10)  // fail to connect to sfu ,sub & pub
-#define E_CONN_TIMEOUT          (EVENT_ERROR_BASE + 11)  // connect request timeout, either temp response or final response
-#define E_SUB_TIMEOUT           (EVENT_ERROR_BASE + 12)  // timeout for subscribe response
-#define E_SUB_NO_STREAM         (EVENT_ERROR_BASE + 13)  // sub stream not exist
-#define E_SUB_NO_AUDIO          (EVENT_ERROR_BASE + 14)  // sub audio track not found
-#define E_SUB_NO_VIDEO          (EVENT_ERROR_BASE + 15)  // sub video track not found
-#define E_SUB_APACKET_TIMEOUT   (EVENT_ERROR_BASE + 16)  // first audio packet timeout after received sub final response successfully
-#define E_SUB_VPACKET_TIMEOUT   (EVENT_ERROR_BASE + 17)  // first video packet timeout after received sub final response successfully
-#define E_SUB_UNKNOWN_ERROR     (EVENT_ERROR_BASE + 20)  // sub other unknown error
-
-#define E_PUB_TIMEOUT       (EVENT_ERROR_BASE + 30)  // timeout for pub response
-#define E_PUB_NO_STREAM     (EVENT_ERROR_BASE + 31)  // pub stream not exist
-#define E_PUB_UNKNOWN_ERROR (EVENT_ERROR_BASE + 32)  // pub other unknown error
-
-
-// errors happening during running stage
-#define E_CONGESTION_BEGIN  (EVENT_ERROR_BASE + 50)  // lost rate too high
-#define E_CONGESTION_END    (EVENT_ERROR_BASE + 51)  // lost rate decrease to normal level
+// errors happening during **opening stage**
+#define E_DNS_FAIL          (EVENT_ERROR_BASE + 1 )  // could not resolve host name
+#define E_AUTH_FAIL         (EVENT_ERROR_BASE + 2 )  // bad auth code
+#define E_CONN_TIMEOUT      (EVENT_ERROR_BASE + 11)  // connect request timeout, either temp response or final response
+#define E_SUB_TIMEOUT       (EVENT_ERROR_BASE + 12)  // timeout for subscribe response
+#define E_SUB_NO_STREAM     (EVENT_ERROR_BASE + 13)  // sub stream not exist
+// errors happening during **running stage**
 #define E_STREAM_BROKEN     (EVENT_ERROR_BASE + 52)  // no any audio and video packets
 #define E_STREAM_RECOVERED  (EVENT_ERROR_BASE + 53)  // audio or video packets recovered
-#define E_STREAM_EOF        (EVENT_ERROR_BASE + 54)  // EOF received from sfu. App need stop playback or pushstream
-
-#define E_CONNECT_LOST      (EVENT_ERROR_BASE + 55)  // require reconnection. sub & pub
-#define E_STREAM_RESTARTED  (EVENT_ERROR_BASE + 56)  // stream restart detected
-#define E_DOWNGRADE_RTMP    (EVENT_ERROR_BASE + 57)  // need downgrade to rtmp  sub & pub
-#define E_DECRYPT_STREAM    (EVENT_ERROR_BASE + 58)  // need check decrypt config
-#define E_IPPORT_SWITCHED   (EVENT_ERROR_BASE + 59)  // wan ip port switched
-#define E_CLIENT_CRASH      (EVENT_ERROR_BASE + 60)  // the client software crashed
-
-
-//For internal use only
-#define EVENT_INTERNAL_BASE 30000
-#define E_CONNECT_TOKEN  (EVENT_INTERNAL_BASE + 1)
+#define E_RECV_STOP_SIGNAL  (EVENT_ERROR_BASE + 61)  // received stop request from the grtn server
 
 #if defined(__cplusplus)
 }
