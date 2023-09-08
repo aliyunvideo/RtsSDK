@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "RtsSDK"
-  s.version      = "2.6.1"
+  s.version      = "2.6.2-32067074"
   s.summary      = "aliyun rts sdk"
 
   # This description is used to generate tags and improve search results.
@@ -53,7 +53,7 @@ Pod::Spec.new do |s|
   #  profile URL.
   #
 
-  s.author             = { "dyt135625" => "dyt135625@alibaba-inc.com" }
+  s.author             = { "jinshui.xjs" => "jinshui.xjs@alibaba-inc.com" }
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #

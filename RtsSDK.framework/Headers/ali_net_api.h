@@ -226,6 +226,8 @@ struct rts_frame {
 
     // msid-value = msid-id [ SP msid-appdata ]
     char msid[NET_MSID_MAX_LENGTH + 1];
+    unsigned long long ext_pts;
+                            // pts that comes from RTP extension header, in ms
 };
 
 /* read one frame

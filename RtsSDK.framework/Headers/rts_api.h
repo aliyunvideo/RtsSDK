@@ -18,6 +18,9 @@
 #define ARTC_CDN_IP            4
 #endif
 
+// max length of RTS SDK Version string
+#define RTS_VERSION_PREFIX_LENGTH 200   // overflowed part will be filtered.
+
 /* Example:
  * struct rts_glue_funcs *fs = get_rts_funcs(2);
  * if(fs != NULL) {
