@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "RtsSDK"
-  s.version      = "2.6.2-32197784"
+  s.version      = "2.6.2-32216460"
   s.summary      = "aliyun rts sdk"
 
   # This description is used to generate tags and improve search results.
