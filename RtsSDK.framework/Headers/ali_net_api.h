@@ -282,6 +282,7 @@ struct player_delay{
     long long decoder_time_ms;  //current utc time when the video frame send to decoder
     long long render_time_ms;   //current utc time when the video frame send to render
     unsigned long long pts;     //the video frame's pts
+    long long decoder_begin_time_ms; // current utc time when the video frame begin to decode
 };
 
 // use ioctl(..., "get_stream_info2", ...) to fetch
