@@ -16,6 +16,7 @@
 #define ARTC_AUDIO_CACHE_SIZE  2
 #define ARTC_NET_DOWNLOADSPEED 3
 #define ARTC_CDN_IP            4
+#define ARTC_VIDEO_CACHE_SIZE_COMPLETE_FRAME 5
 #endif
 
 // max length of RTS SDK Version string
