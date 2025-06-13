@@ -24,6 +24,9 @@
 // max length of RTS SDK Version string
 #define RTS_VERSION_PREFIX_LENGTH 200   // overflowed part will be filtered.
 
+// max length of RTS NODE Info string
+#define RTS_NODE_INFO_LENGTH 4096       // overflowed part will be filtered.
+
 /* Example:
  * struct rts_glue_funcs *fs = get_rts_funcs(2);
  * if(fs != NULL) {
